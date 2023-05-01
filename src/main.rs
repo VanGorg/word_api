@@ -26,10 +26,7 @@ async fn count_letters(word: web::Path<String>) -> HttpResponse {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| {
-        App::new()
-            .route("/word/{word}", web::get().to(count_letters))
-    })
+    HttpServer::new(|| App::new().route("/word/{word}", web::get().to(count_letters)))
         .bind("127.0.0.1:8080")?
         .run()
         .await
